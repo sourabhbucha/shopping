@@ -1,38 +1,73 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar {
+  position: fixed;
+  top: 0;
+  height: max(9vh, 70px);
+  width: 100%;
+  background-color: aqua;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  z-index: 99;
 }
 
-.App-link {
-  color: #61dafb;
+.content {
+  margin: auto;
+  width: max(800px, 90vw);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sidebar {
+  position: fixed;
+  top: 0;
+  z-index: 90;
+  /* left: 10px; */
+  height: 100%;
+  width: max(150px, 18vw);
+  background-color: blue;
+}
+
+.items {
+  margin-top: max(10vh, 100px);
+  margin-left: max(155px, 19vw);
+  width: max(600px, 70vw);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2vw;
+}
+
+.product {
+  width: 20vw;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: max(25vh, 150px) auto auto;
+}
+
+.product > img {
+  grid-column: 1/3;
+  margin: auto;
+  height: 25vh;
+  width: auto;
+  min-height: 150px;
+  min-width: 110px;
+}
+
+.product > p {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product > span {
+  grid-column: 1/2;
+  grid-row: 3/4;
+  font-size: 15px;
+}
+
+.product > button {
+  grid-column: 2/3;
+  grid-row: 2/4;
 }
