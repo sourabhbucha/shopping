@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="App">
       <div className="navbar">
-
+        <a href="#" onClick={()=>{document.getElementById("cart").style.display = "grid";}}>Cart {cart.length}</a>
       </div>
     <div className="content">
       <div className="sidebar">
@@ -46,7 +46,20 @@ function App() {
           </div>
         ))} 
       </div>
-    </div>  
+    </div>
+
+    <div className="cart" id="cart">
+      <button onClick={()=>{document.getElementById("cart").style.display = "none";}}>Close</button>
+        <div className="cartItems">
+          {cart.map((product) => (
+            <div className="cart_item" key={product.id}>
+              <img src={product.img_src} alt="" />
+              <p>{product.name}</p>
+              <span>{product.price}</span>
+            </div>
+          ))} 
+        </div>
+      </div>  
     </div>
   );
 }

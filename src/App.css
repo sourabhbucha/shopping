@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  overflow-x: none;
 }
 
 .navbar {
@@ -21,7 +22,6 @@ body {
   position: fixed;
   top: 0;
   z-index: 90;
-  /* left: 10px; */
   height: 100%;
   width: max(150px, 18vw);
   background-color: blue;
@@ -41,6 +41,7 @@ body {
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: max(25vh, 150px) auto auto;
+  background-color: bisque;
 }
 
 .product > img {
@@ -48,8 +49,38 @@ body {
   margin: auto;
   height: 25vh;
   width: auto;
+  max-width: 18vw;
   min-height: 150px;
   min-width: 110px;
+  object-fit: contain;
+}
+
+@media only screen and (max-width: 600px) {
+  .items {
+    margin-top: max(10vh, 100px);
+    margin-left: max(200px, 22vw);
+    width: max(600px, 70vw);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2vw;
+  }
+  .product {
+    width: 50vw;
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    grid-template-rows: max(25vh, 150px) auto auto;
+  }
+  .product > img {
+    grid-column: 1/3;
+    margin: auto;
+    height: 30vh;
+    width: auto;
+    max-width: 22vw;
+    max-height: 150px;
+    /* min-height: 150px; */
+    /* min-width: 110px; */
+    object-fit: contain;
+  }
 }
 
 .product > p {
@@ -70,4 +101,53 @@ body {
 .product > button {
   grid-column: 2/3;
   grid-row: 2/4;
+}
+
+.cart {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  z-index: 99;
+  display: none;
+}
+
+.cartItems {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  background-color: aliceblue;
+  overflow-y: scroll;
+}
+
+.cart_item {
+  width: 20vw;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: max(25vh, 150px) auto auto;
+  background-color: bisque;
+}
+
+.cart_item > img {
+  grid-column: 1/3;
+  margin: auto;
+  height: 30vh;
+  width: auto;
+  max-width: 22vw;
+  max-height: 150px;
+  object-fit: contain;
+}
+
+.cart_item > p {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cart_item > span {
+  grid-column: 1/2;
+  grid-row: 3/4;
+  font-size: 15px;
 }
