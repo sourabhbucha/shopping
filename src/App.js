@@ -5,6 +5,19 @@ import { Data } from "./Data";
 function App() {
   const [products,setProducts] = useState(Data);
   const [cart,setCart] = useState([]);
+  // const [category,setCategory] = useState([])
+
+  const [keyword,setKeyword] = useState('');
+
+    useEffect (() => {
+      if(keyword.length > 0 ){ 
+        setProducts(products.filter((products) =>  products.name.toLowerCase().includes(keyword.toLowerCase()) || products.desc.toLowerCase().includes(keyword.toLowerCase()) ))
+      }
+      else{
+        setProducts(Data)
+      }
+  },[keyword]); 
+
 
   useEffect(()=>{
     console.log(cart)
@@ -33,6 +46,14 @@ function App() {
       );
   };
 
+  const total = () =>{
+    var sum = 0;
+    cart.map((x) =>
+          sum = sum + x.qty * x.price
+        );
+    return <h1>{sum}</h1>    
+  }
+
   const onRemove = (product) => {
     const exist = cart.find((x) => x.id === product.id);
     if (exist.qty === 1) {
@@ -58,7 +79,8 @@ function App() {
       </div>
     <div className="content">
       <div className="sidebar">
-    
+        <input type="text" placeholder="Search..." name="search" className="search" value = {keyword} onChange={(e) => setKeyword(e.target.value)}/>  
+        {/* <button type="submit" className="search_btn">search</button> */}
       </div>
       <div className="items">
         {products.map((product) => (
@@ -81,16 +103,18 @@ function App() {
           {cart.map((product) => (
             <div className="cart_item" key={product.id}>
               <img src={product.img_src} alt="" />
-              <p>{product.name}</p>
-              <span>{product.price}</span>
+              <h1>{product.name}</h1>
+              <h2>{product.price}</h2>
+              <h3>{product.price * product.qty}</h3>
               <button className="less" onClick = {() => onRemove(product)}>-</button>
                 {product.qty}
               <button className="more" onClick = {() => onAdd(product)}>+</button>
             </div>
           ))} 
+          {total()}
         </div>
     </div>  
-
+    
     </div>
   );
 }
