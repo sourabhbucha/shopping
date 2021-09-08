@@ -99,7 +99,7 @@ function App() {
 
     <div className="cart" id="cart">
       <button onClick={()=>{document.getElementById("cart").style.display = "none";}}>Close</button>
-        <div className="cartItems">
+          {cart.length === 0 ? <h1>Empty Cart </h1> : <div className="cartItems"> 
           {cart.map((product) => (
             <div className="cart_item" key={product.id}>
               <img src={product.img_src} alt="" />
@@ -110,9 +110,11 @@ function App() {
                 {product.qty}
               <button className="more" onClick = {() => onAdd(product)}>+</button>
             </div>
-          ))} 
-          {total()}
+          ))}
         </div>
+          }
+        {total()}
+        <button className="placeOrder">Place Order</button>
     </div>  
     
     </div>
