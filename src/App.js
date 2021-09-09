@@ -25,13 +25,13 @@ function App() {
 
   const btn = (x) =>{
     if(x === 0){
-      return <p>Add to Cart</p>
+      return <p><i class="fa fa-cart-plus" aria-hidden="true"></i></p>
     }else{
-      return <p>Already in the cart</p>
+      return <p><i class="fa fa-shopping-cart" aria-hidden="true"></i></p>
     }
   }
   const disable_btn = (x) => {
-    if( x === 0) {return false;}
+    if( x == 0) {return false;}
     else{
       return true;
     }
@@ -48,10 +48,25 @@ function App() {
 
   const total = () =>{
     var sum = 0;
-    cart.map((x) =>
+    var sumQty = 0;
+    cart.map((x) => (
           sum = sum + x.qty * x.price
+          )
         );
-    return <h1>{sum}</h1>    
+    cart.map((x) => (
+          sumQty = sumQty + x.qty
+          )
+        );
+    if (cart.length === 0){
+      return <h1></h1> 
+    }
+    return (
+      <div className="total">
+        <h2>Total Qty: {sumQty}</h2> 
+        <h2>Total Amount: {sum}</h2> 
+        <button className="placeOrder">Place Order</button>
+      </div>   
+    );
   }
 
   const onRemove = (product) => {
@@ -75,7 +90,7 @@ function App() {
   return (
     <div className="App">
       <div className="navbar">
-        <a href="#" onClick={()=>{document.getElementById("cart").style.display = "grid";}}>Cart {cart.length}</a>
+        <a href="#" onClick={()=>{document.getElementById("cart").style.display = "grid";}}><i class="fa fa-shopping-cart" aria-hidden="true"></i> {cart.length}</a>
       </div>
     <div className="content">
       <div className="sidebar">
@@ -87,8 +102,8 @@ function App() {
           <div className="product" key={product.id}>
             <img src={product.img_src} alt="" />
             <p>{product.name}</p>
-            <span>{product.price}</span>
-            <button onClick = {() => {
+            <span> <i class="fa fa-inr" aria-hidden="true"></i> {product.price}</span>
+            <button href="#" onClick = {() => {
               product.qty=1;
               setCart([...cart, product]);
             }} disabled={disable_btn(product.qty)}> {btn(product.qty)} </button>
@@ -98,23 +113,23 @@ function App() {
     </div>
 
     <div className="cart" id="cart">
-      <button onClick={()=>{document.getElementById("cart").style.display = "none";}}>Close</button>
-          {cart.length === 0 ? <h1>Empty Cart </h1> : <div className="cartItems"> 
+      <a href="#" className="Close" onClick={()=>{document.getElementById("cart").style.display = "none";}}><i class="fa fa-times" aria-hidden="true"></i></a>
+          {cart.length === 0 ? <h1 className="emptyCart">Empty Cart </h1> : <div className="cartItems"> 
           {cart.map((product) => (
             <div className="cart_item" key={product.id}>
               <img src={product.img_src} alt="" />
               <h1>{product.name}</h1>
               <h2>{product.price}</h2>
               <h3>{product.price * product.qty}</h3>
-              <button className="less" onClick = {() => onRemove(product)}>-</button>
-                {product.qty}
-              <button className="more" onClick = {() => onAdd(product)}>+</button>
+              <button className="less" onClick = {() => onRemove(product)}><i class="fa fa-minus-square-o" aria-hidden="true"></i></button>
+                <h4>{product.qty}</h4>
+              <button className="more" onClick = {() => onAdd(product)}><i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
             </div>
           ))}
         </div>
           }
+          {/* <br /> */}
         {total()}
-        <button className="placeOrder">Place Order</button>
     </div>  
     
     </div>
