@@ -1,13 +1,14 @@
 export const Data = [
     {
         id: "1",
-        img_src: "https://m.media-amazon.com/images/I/61p683nGweL._AC_UL480_FMwebp_QL65_.jpg",
+        img_src: "/images/1.jpg",
         name: "Armless Chair CHR4002 Plastic Chair (Bright Red) by GN Furniture (6PC Combo)",
         desc: "this is the item",
         category: "category1",
         Weight: "1000",
-        price: "2000",
-        qty: 0
+        mrp: "2000",
+        discount: "20",
+        qty: 0,
     },
     {
         id: "2",
@@ -16,8 +17,9 @@ export const Data = [
         desc: "this is the item",
         category: "category1",
         Weight: "1000",
-        price: "2500",
-        qty: 0
+        mrp: "2500",
+        discount: "20",
+        qty: 0,
     },
     {
         id: "3",
@@ -26,8 +28,10 @@ export const Data = [
         desc: "this is the item",
         category: "category2",
         Weight: "1000",
-        price: "5500",
-        qty: 0
+        mrp: "5500",
+        discount: "20",
+        qty: 0,
+        mrpn: "MRP"
     },
     {
         id: "4",
@@ -36,7 +40,8 @@ export const Data = [
         desc: "this is the item",
         category: "category2",
         Weight: "1000",
-        price: "1500",
+        mrp: "1500",
+        discount: "20",
         qty: 0
     },
     {
@@ -46,7 +51,8 @@ export const Data = [
         desc: "this is the item",
         category: "category3",
         Weight: "1000",
-        price: "3000",
+        mrp: "3000",
+        discount: "20",
         qty: 0
     },
     {
@@ -56,7 +62,8 @@ export const Data = [
         desc: "this is the item",
         category: "category3",
         Weight: "1000",
-        price: "4000",
+        mrp: "4000",
+        discount: "20",
         qty: 0
     },
     {
@@ -66,7 +73,8 @@ export const Data = [
         desc: "this is the item",
         category: "category4",
         Weight: "1000",
-        price: "5000",
+        mrp: "5000",
+        discount: "20",
         qty: 0
     },
     {
@@ -76,7 +84,8 @@ export const Data = [
         desc: "this is the item",
         category: "category1",
         Weight: "1000",
-        price: "2000",
+        mrp: "2000",
+        discount: "20",
         qty: 0
     },
     {
@@ -86,7 +95,8 @@ export const Data = [
         desc: "this is the item",
         category: "category2",
         Weight: "1000",
-        price: "1500",
+        mrp: "1500",
+        discount: "20",
         qty: 0
     },
     {
@@ -96,7 +106,8 @@ export const Data = [
         desc: "this is the item",
         category: "category3",
         Weight: "1000",
-        price: "3000",
+        mrp: "3000",
+        discount: "20",
         qty: 0
     },
     {
@@ -106,7 +117,8 @@ export const Data = [
         desc: "this is the item",
         category: "category3",
         Weight: "1000",
-        price: "4000",
+        mrp: "4000",
+        discount: "20",
         qty: 0
     },
     {
@@ -116,7 +128,8 @@ export const Data = [
         desc: "this is the item",
         category: "category4",
         Weight: "1000",
-        price: "5000",
+        mrp: "5000",
+        discount: "20",
         qty: 0
     },
     

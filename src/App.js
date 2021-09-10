@@ -1,9 +1,10 @@
 import React , {useState, useEffect} from "react";
 import './App.css';
-import { Data } from "./Data";
+// import { Data } from "./Data";
+import {csv} from 'd3';
 
 function App() {
-  const [products,setProducts] = useState(Data);
+  const [products,setProducts] = useState([]);
   const [cart,setCart] = useState([]);
   // const [category,setCategory] = useState([])
 
@@ -14,20 +15,24 @@ function App() {
         setProducts(products.filter((products) =>  products.name.toLowerCase().includes(keyword.toLowerCase()) || products.desc.toLowerCase().includes(keyword.toLowerCase()) ))
       }
       else{
-        setProducts(Data)
-      }
+        csv('/data.csv').then(data => {
+      setProducts(data);
+    })
+      };
   },[keyword]); 
 
 
   useEffect(()=>{
-    console.log(cart)
-  })
+    csv('/data.csv').then(data => {
+      setProducts(data);
+    })
+  },[])
 
   const btn = (x) =>{
-    if(x === 0){
-      return <p><i class="fa fa-cart-plus" aria-hidden="true"></i></p>
+    if(x == 0){
+      return <p><i className="fa fa-cart-plus" aria-hidden="true"></i></p>
     }else{
-      return <p><i class="fa fa-shopping-cart" aria-hidden="true"></i></p>
+      return <p><i className="fa fa-cart-plus" aria-hidden="true"></i></p>
     }
   }
   const disable_btn = (x) => {
@@ -50,7 +55,7 @@ function App() {
     var sum = 0;
     var sumQty = 0;
     cart.map((x) => (
-          sum = sum + x.qty * x.price
+          sum = sum + x.qty * x.mrp
           )
         );
     cart.map((x) => (
@@ -90,7 +95,7 @@ function App() {
   return (
     <div className="App">
       <div className="navbar">
-        <a href="#" onClick={()=>{document.getElementById("cart").style.display = "grid";}}><i class="fa fa-shopping-cart" aria-hidden="true"></i> {cart.length}</a>
+        <a href="#" onClick={()=>{document.getElementById("cart").style.display = "grid";}}><i className="fa fa-shopping-cart" aria-hidden="true"></i> {cart.length}</a>
       </div>
     <div className="content">
       <div className="sidebar">
@@ -102,28 +107,30 @@ function App() {
           <div className="product" key={product.id}>
             <img src={product.img_src} alt="" />
             <p>{product.name}</p>
-            <span> <i class="fa fa-inr" aria-hidden="true"></i> {product.price}</span>
+            <span><b>MRP</b> <i className="fa fa-inr" aria-hidden="true"></i> {product.mrp}</span>
+            <h4>{product.discount}<b>% off</b></h4>
+            <h5><b>Our Price : <i className="fa fa-inr" aria-hidden="true"></i></b>{product.mrp * (100-product.discount)*.01}</h5>
             <button href="#" onClick = {() => {
               product.qty=1;
               setCart([...cart, product]);
             }} disabled={disable_btn(product.qty)}> {btn(product.qty)} </button>
           </div>
-        ))} 
+        ))}  
       </div>
     </div>
 
     <div className="cart" id="cart">
-      <a href="#" className="Close" onClick={()=>{document.getElementById("cart").style.display = "none";}}><i class="fa fa-times" aria-hidden="true"></i></a>
+      <a href="#" className="Close" onClick={()=>{document.getElementById("cart").style.display = "none";}}><i className="fa fa-times" aria-hidden="true"></i></a>
           {cart.length === 0 ? <h1 className="emptyCart">Empty Cart </h1> : <div className="cartItems"> 
           {cart.map((product) => (
             <div className="cart_item" key={product.id}>
               <img src={product.img_src} alt="" />
               <h1>{product.name}</h1>
-              <h2>{product.price}</h2>
-              <h3>{product.price * product.qty}</h3>
-              <button className="less" onClick = {() => onRemove(product)}><i class="fa fa-minus-square-o" aria-hidden="true"></i></button>
+              <h2>{product.mrp}</h2>
+              <h3>{product.mrp * product.qty}</h3>
+              <button className="less" onClick = {() => onRemove(product)}><i className="fa fa-minus-square-o" aria-hidden="true"></i></button>
                 <h4>{product.qty}</h4>
-              <button className="more" onClick = {() => onAdd(product)}><i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
+              <button className="more" onClick = {() => onAdd(product)}><i className="fa fa-plus-square-o" aria-hidden="true"></i></button>
             </div>
           ))}
         </div>

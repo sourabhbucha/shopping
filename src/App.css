@@ -62,7 +62,7 @@ body {
   width: 21vw;
   display: grid;
   grid-template-columns: 2fr max(5vh, 50px);
-  grid-template-rows: max(25vh, 150px) auto auto;
+  grid-template-rows: max(25vh, 150px) auto auto auto auto;
   border-style: solid;
   border-width: 1px;
   padding: 1vw;
@@ -91,9 +91,31 @@ body {
 }
 
 .product > span {
+  margin-bottom: 0;
+  margin-top: 0;
   grid-column: 1/2;
-  grid-row: 3/4;
+  grid-row: 3/3;
   font-size: 18px;
+  text-decoration: line-through;
+}
+
+.product > h4 {
+  margin-bottom: 0;
+  margin-top: 0;
+  grid-column: 1/2;
+  grid-row: 4/4;
+  font-size: 18px;
+  color: darkgoldenrod;
+  /* text-decoration-line: underline; */
+}
+
+.product > h5 {
+  margin-top: 0;
+  grid-column: 1/2;
+  grid-row: 5/5;
+  font-size: 18px;
+  color: rgba(7, 116, 39, 0.9);
+  /* text-decoration-line: underline ; */
 }
 
 .product > button {
